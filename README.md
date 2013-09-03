@@ -1,0 +1,4 @@
+Smads
+=====
+
+Smart ethical ads
