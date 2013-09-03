@@ -1,0 +1,28 @@
+{
+    "name": "Smads",
+    "version": "0.0.1",
+    "author" : "CampusHacks",
+    "maintainers":[
+        {
+            "name":"Alejandro",
+            "email":"alejandro@perezpaya.com"
+        }
+    ],
+
+    "main": "app.js",
+
+    "dependencies": {
+        "express": "*"
+    },
+
+    "scripts":{
+        "app": "node app.js"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CampusHacks/Smads"
+    },
+
+    "license": "MIT"
+}
