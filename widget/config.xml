@@ -4,9 +4,9 @@
     <Catalog.ResourceDescription>
         <Vendor>CampusHacks</Vendor>
         <Name>Smads</Name>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <DisplayName>Smads</DisplayName>
-        <Author>Braulio Valdivielso, Alberto Elías</Author>
+        <Author>Braulio Valdivielso, Alberto Elías<h1> Hola </h1></Author>
         <Mail>brlvldvlsmrtnz@gmail.com</Mail>
         <Description>Smart and ethical ads</Description>
         <ImageURI></ImageURI>
