@@ -1,30 +1,14 @@
-// Imports
+var env = process.argv[2] || 'dev';
+var PORT = ((env == 'prod') ? 80 : 3000)
+process.env.NODE_ENV = ((env == 'prod') ? 'production' : 'development')
 
-	var express = require('express');
-	var model = require('./model');
+var model = require('./model'),
 	mongoose = require('mongoose');
 
-	mongoose.connect('mongodb://localhost/smads');
+mongoose.connect('mongodb://localhost/smads');
+mongoose.model('Ad', model.ad);
 
-	mongoose.model('Ad', model.ad);
-	//mongoose.model('Client', model.client);
+require('./server').listen(PORT, function (err){
 
-// Lib modules
-
-	var rest = require('./lib/rest');
-
-// Inicializations
-
-	var app = express();
-
-// APP ROUTES
-
-	app.get('/ad', rest.listAds);
-
-	app.post('/ad', rest.createAd);
-
-	app.put('/ad', rest.updateAd);
-
-	app.del('/ad', rest.deleteAd);
-
-	app.listen(8080);
+	console.log('Up and running on port '+PORT)
+});
