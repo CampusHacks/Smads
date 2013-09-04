@@ -17,4 +17,6 @@ server.listen(PORT, function (err){
 	console.log('Up and running on port '+PORT);
 });
 
-//io
+// Require the IoT Bridge engine
+
+require(__dirname + '/iot/main');
