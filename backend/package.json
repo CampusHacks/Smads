@@ -12,7 +12,10 @@
     "main": "app.js",
 
     "dependencies": {
-        "express": "*"
+        "express": "*",
+        "mongoose": "*",
+        "mixpanel": "*",
+        "async": "*"
     },
 
     "scripts":{
