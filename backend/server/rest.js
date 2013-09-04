@@ -22,7 +22,7 @@ rest.list = function (req, res, next) {
 
 rest.create = function (req, res, next) {
 
-	Ad.create(req.body.data, function (err, ad){
+	Ad.create(JSON.parse(req.body.data), function (err, ad){
 
 		res.send({
 			err: err,

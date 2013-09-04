@@ -6,7 +6,9 @@ var adSchema = new mongoose.Schema({
 
 	url: String,
 	
-	temperature: {
+	conditions: Object,
+
+/*	temperature: {
 		min: Number,
 		max: Number
 	},
@@ -24,7 +26,7 @@ var adSchema = new mongoose.Schema({
 	light: {
 		min: Number,
 		max: Number
-	},
+	},*/
 
 	client_id: String
 });
