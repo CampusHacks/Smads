@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Ad = mongoose.model('Ad');
 var Client = mongoose.model('Client');
 
-rest.list = function (req, res, next) {
+rest.list = function (req, res) {
 	Ad.list(function (err, ads){
 		
 		res.send({
@@ -14,13 +14,11 @@ rest.list = function (req, res, next) {
 			ads: ads
 		});
 
-		next();
-
 	});
 };
 
 
-rest.create = function (req, res, next) {
+rest.create = function (req, res) {
 
 	Ad.create(JSON.parse(req.body.data), function (err, ad){
 
@@ -29,14 +27,12 @@ rest.create = function (req, res, next) {
 			ad: ad
 		});
 
-		next();
-
 	});
 
 };
 
 
-rest.update = function (req, res, next) {
+rest.update = function (req, res) {
 
 	Ad.update(req.body.id, req.body.data, function (err){
 
@@ -44,32 +40,27 @@ rest.update = function (req, res, next) {
 			err: err
 		});
 
-		next();
-
 	});
 
 };
 
 
-rest.remove = function (req, res, next) {
+rest.remove = function (req, res) {
 
 	Ad.remove(req.body.id, function (err){
 		
 		res.send({
 			err: err
 		});
-		
-		next();
 
 	});
 
 };
 
-rest.listClient = function (req, res, next){
+rest.listClient = function (req, res){
 
 	Client.list(function (err, clients){
 		res.send({err: err, clients: clients});
-		next();
 	});
 
 };

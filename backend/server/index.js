@@ -1,7 +1,7 @@
-var express = require('express'),
-	http = require('http')
+var express = require('express');
+var http = require('http');
 
-var app = express()
+var app = express();
 
 //Express config 
 
@@ -15,10 +15,10 @@ if ('development' == app.get('env')) {
 }
 
 //Routes
-var rest = require('./rest')
+var rest = require('./rest');
 
 //Test
-app.get('/', function (req, res){res.send('Up')})
+app.get('/', function (req, res){res.send('Up and running dude!')});
 
 app.get('/ad', rest.list);
 app.post('/ad', rest.create);
@@ -27,4 +27,4 @@ app.del('/ad', rest.remove);
 
 app.get('/clients', rest.listClient);
 
-exports = module.exports = http.createServer(app)
+exports = module.exports = http.createServer(app);
