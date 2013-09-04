@@ -19,7 +19,6 @@
     "dependencies": {
         "express": "*",
         "mongoose": "*",
-        "mixpanel": "*",
         "async": "*",
         "socket.io": "*"
     },
