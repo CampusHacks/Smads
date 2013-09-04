@@ -27,7 +27,7 @@ var adSchema = new mongoose.Schema({
 	},
 
 	client_id: String
-}
+});
 
 adSchema.statics.create = function (data, callback) {
 	var insert = new this();

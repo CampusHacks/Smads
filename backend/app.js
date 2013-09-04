@@ -7,7 +7,7 @@
 	mongoose.connect('mongodb://localhost/smads');
 
 	mongoose.model('Ad', model.ad);
-	mongoose.model('Client', model.client);
+	//mongoose.model('Client', model.client);
 
 // Lib modules
 
@@ -26,3 +26,5 @@
 	app.put('/ad', rest.updateAd);
 
 	app.del('/ad', rest.deleteAd);
+
+	app.listen(8080);
