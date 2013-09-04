@@ -18,7 +18,11 @@ if ('development' == app.get('env')) {
 var rest = require('./rest');
 
 //Test
-app.get('/', function (req, res){res.send('Up and running dude!')});
+app.get('/', function (req, res){
+
+	res.sendfile(__dirname + '/../views/index.html')
+
+});
 
 app.get('/ad', rest.list);
 app.post('/ad', rest.create);

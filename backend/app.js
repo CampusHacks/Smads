@@ -11,10 +11,10 @@ mongoose.model('Client', model.client);
 
 var server = require('./server');
 
-var io = require('socket.io').listen(server);
+global.io = require('socket.io').listen(server);
 
 server.listen(PORT, function (err){
 	console.log('Up and running on port '+PORT);
 });
 
-//io.
+//io
