@@ -25,4 +25,6 @@ app.post('/ad', rest.create);
 app.put('/ad', rest.update);
 app.del('/ad', rest.remove);
 
+app.get('/clients' rest.listClient);
+
 exports = module.exports = http.createServer(app)
