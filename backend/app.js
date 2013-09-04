@@ -8,7 +8,11 @@ var model = require('./model'),
 mongoose.connect('mongodb://localhost/smads');
 mongoose.model('Ad', model.ad);
 
-require('./server').listen(PORT, function (err){
+var server = require('./server');
+
+io = require('socket.io').listen(server);
+
+server.listen(PORT, function (err){
 
 	console.log('Up and running on port '+PORT);
 });
