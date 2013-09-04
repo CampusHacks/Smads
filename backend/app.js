@@ -7,6 +7,7 @@ var model = require('./model'),
 
 mongoose.connect('mongodb://localhost/smads');
 mongoose.model('Ad', model.ad);
+mongoose.model('Client', model.client);
 
 var server = require('./server');
 
