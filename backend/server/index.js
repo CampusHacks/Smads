@@ -13,11 +13,10 @@ app.use(express.bodyParser());
 app.use(function (req, res, next){
 
 	res.sendfile = function (file, cb){
-
 		res.sendfile(path.resolve(file), cb);
-
 	};
 
+	next();
 
 });
 
