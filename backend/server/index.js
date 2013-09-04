@@ -20,9 +20,9 @@ var rest = require('./rest')
 //Test
 app.get('/', function (req, res){res.send('Up')})
 
-app.get('/ad', rest.listAds);
-app.post('/ad', rest.createAd);
-app.put('/ad', rest.updateAd);
-app.del('/ad', rest.deleteAd);
+app.get('/ad', rest.list);
+app.post('/ad', rest.create);
+app.put('/ad', rest.update);
+app.del('/ad', rest.remove);
 
 exports = module.exports = http.createServer(app)

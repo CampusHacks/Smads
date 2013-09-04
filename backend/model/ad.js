@@ -43,19 +43,33 @@ adSchema.statics.create = function (data, callback) {
 	});
 };
 
-adSchema.statics.delete = function (id, callback){
+adSchema.statics.remove = function (id, callback){
 
 	this.findOne({_id: id}).remove().exec(callback);
 
 };
 
-adSchema.statics.update = function (){
+adSchema.statics.update = function (id, data, callback){
+
+	this.findById(id, function (err, ad){
+
+		async.map(Object.keys(data), function (key, cb){
+
+			ad[key] = data[key];
+
+		}, function (err){
+		
+			ad.save(callback)
+		
+		});
+
+	});
 
 };
 
 adSchema.statics.list = function (callback){
 
-	this.findAll().exec(callback);
+	this.find({}).exec(callback);
 
 };
 

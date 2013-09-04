@@ -20,11 +20,12 @@
         "express": "*",
         "mongoose": "*",
         "mixpanel": "*",
-        "async": "*"
+        "async": "*",
+        "socketio": "*"
     },
 
     "scripts":{
-        "app": "node app.js"
+        "start": "node app.js"
     },
 
     "repository": {

@@ -10,5 +10,5 @@ mongoose.model('Ad', model.ad);
 
 require('./server').listen(PORT, function (err){
 
-	console.log('Up and running on port '+PORT)
+	console.log('Up and running on port '+PORT);
 });
