@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var path = require('path');
 
 var app = express();
 
@@ -8,6 +9,17 @@ var app = express();
 app.use(express.logger('dev'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
+
+app.use(function (req, res, next){
+
+	res.sendfile = function (file, cb){
+
+		res.sendfile(path.resolve(file), cb);
+
+	};
+
+
+});
 
 //Error handling
 if ('development' == app.get('env')) {
@@ -20,7 +32,7 @@ var rest = require('./rest');
 //Test
 app.get('/', function (req, res){
 
-	res.sendfile(__dirname + '/../views/index.html')
+	res.sendfile(__dirname + '/../views/index.html');
 
 });
 
