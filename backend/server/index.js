@@ -17,6 +17,9 @@ if ('development' == app.get('env')) {
 //Routes
 var rest = require('./rest')
 
+//Test
+app.get('/', function (req, res){res.send('Up')})
+
 app.get('/ad', rest.listAds);
 app.post('/ad', rest.createAd);
 app.put('/ad', rest.updateAd);
