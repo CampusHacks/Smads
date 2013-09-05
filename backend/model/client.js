@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 var async = require('async');
-var adSchema = require('')
+var adSchema = require('./ad');
 
 var clientSchema = new mongoose.Schema({
 
@@ -16,7 +16,7 @@ clientSchema.statics.list = function (callback){
 	this.find({}).exec(function(err, data){
 		adSchema.list(function(er, ads){
 
-		})
+		});
 
 	});
 
@@ -24,7 +24,7 @@ clientSchema.statics.list = function (callback){
 
 module.exports = exports = clientSchema;
 
-"""
+/*
 [
 
 	client: {
@@ -36,4 +36,4 @@ module.exports = exports = clientSchema;
 		]
 	}
 
-]
+]*/
