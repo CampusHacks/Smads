@@ -18,13 +18,6 @@ if ('development' == app.get('env')) {
 //Routes
 var rest = require('./rest');
 
-//Test
-app.get('/', function (req, res){
-
-	res.sendfile(path.resolve(__dirname + '/../views/index.html'));
-
-});
-
 app.get('/ad', rest.list);
 app.post('/ad', rest.create);
 app.put('/ad', rest.update);
