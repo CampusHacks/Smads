@@ -5,7 +5,8 @@ var async = require('async');
 var clientSchema = new mongoose.Schema({
 
 	name: String,
-	fid: String
+	fid: String,
+	ip: String
 
 });
 
