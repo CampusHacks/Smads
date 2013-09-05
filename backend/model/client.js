@@ -7,10 +7,11 @@ var adSchema = mongoose.model('Ad', require('./ad'));
 var ObjectId = mongoose.Schema.ObjectId
 
 var clientSchema = new mongoose.Schema({
+	
 	name: String,
 	fid: String,
 	ip: String,
-	id: ObjectId,
+	_id: ObjectId,
 	ads: Array
 
 });
@@ -18,6 +19,10 @@ var clientSchema = new mongoose.Schema({
 clientSchema.statics.create = function (data, callback){
 
 	var insert = new this();
+
+	insert.url = data.url;
+	insert.conditons = data.conditons;
+	insert.client_ids = data.client_ids;
 
 	async.map(Object.keys(data), function (key, cb){
 

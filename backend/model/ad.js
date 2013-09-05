@@ -6,7 +6,7 @@ var async = require('async');
 
 var adSchema = new schema({
 
-	id: String,
+	url: String,
 	
 	conditions: Object,
 
