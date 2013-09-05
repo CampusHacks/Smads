@@ -33,15 +33,11 @@ adSchema.statics.update = function (id, data, callback){
 
 	this.findById(id, function (err, ad){
 
-		async.map(Object.keys(data), function (key, cb){
+		ad.url = data.url;
+		ad.conditons = data.conditons;
+		ad.client_ids = data.client_ids;
 
-			ad[key] = data[key];
-
-		}, function (err){
-		
-			ad.save(callback);
-		
-		});
+		ad.save(callback);
 
 	});
 
