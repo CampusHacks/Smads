@@ -2,14 +2,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8"></meta>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="lib/js/ICanHaz.min.js"></script>
+
         <script type="text/javascript"src="js/services.js"></script>
+        <script type="text/javascript" src="js/api.js"></script>
+
         <script type="text/javascript" src="js/main.js"></script>
 
-        
 
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script id="select_with_clients" type="text/html">
+            {{#clients}}
+                <input type="checkbox" data-client-id="{{ _id }}" value="{{ name }}">
+            {{/clients}}
+            </select>
+        </script>
     </head>
     <body>
-		<h1> Screens </h1>
+		<h1> Smads ad </h1>
+        <div class="ad-config">
+            <div class="select-div">
+
+            </div>
+
+            <div>
+            <label for="id-txt">  Video id </label><br>
+            <input type="text" id="id-txt"><br>
+            </div>
+
+            <div>
+            <label for="temperature"> Temperature </label><br>
+            From <input type="number" id="temperature-min-txt"> to <input type="number" id="temperature-max-txt"><br>
+            </div>
+
+            <div>
+            <label for="lux-range"> Lux </label><br>
+            From <input type="number" id="lux-min-txt"> to <input type="number" id="lux-max-txt"><br>
+            </div>
+
+            <div>
+            <label for="humidity"> Humidity range </label><br>
+            From <input type="number" id="humidity-min-txt"> to <input type="number" id="humidity-max-txt"><br>
+            </div>
+
+            <button id="save-ad-btn"> Save </button>
+		</div>
     </body>
 </html>
