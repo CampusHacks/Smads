@@ -9,6 +9,7 @@ var app = express();
 app.use(express.logger('dev'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
+app.use(express.static(__dirname + '/../../client'));
 
 //Error handling
 if ('development' == app.get('env')) {
@@ -21,7 +22,7 @@ var rest = require('./rest');
 //Test
 app.get('/', function (req, res){
 
-	res.sendfile(path.resolve(__dirname + '/../views/index.html'));
+	res.sendfile(path.resolve(__dirname + '/../../client/index.html'));
 
 });
 
