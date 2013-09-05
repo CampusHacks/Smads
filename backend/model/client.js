@@ -16,25 +16,6 @@ var clientSchema = new mongoose.Schema({
 
 });
 
-clientSchema.statics.create = function (data, callback){
-
-	var insert = new this();
-
-	insert.url = data.url;
-	insert.conditons = data.conditons;
-	insert.client_ids = data.client_ids;
-
-	async.map(Object.keys(data), function (key, cb){
-
-		insert[key] = data[key];
-
-	}, function (err){
-	
-		insert.save(callback);
-
-	});
-};
-
 clientSchema.statics.list = function (callback){
 
 	this.find({}).exec(function(err, clients){

@@ -16,15 +16,11 @@ var adSchema = new schema({
 adSchema.statics.create = function (data, callback) {
 	var insert = new this();
 
-	async.map(Object.keys(data), function (key, cb){
+	insert.url = data.url;
+	insert.conditons = data.conditons;
+	insert.client_ids = data.client_ids;
 
-		insert[key] = data[key];
-
-	}, function (err){
-	
-		insert.save(callback);
-	
-	});
+	insert.save(callback);
 };
 
 adSchema.statics.remove = function (id, callback){
