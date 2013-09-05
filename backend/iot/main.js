@@ -1,20 +1,26 @@
+var request = require('request');
+var async = require('async');
+var util = require('util');
+var mongoose = require('mongoose');
+var Ad = mongoose.model('Ad');
+var Client = mongoose.model('Client');
+
 io.sockets.on('connection', function (socket) {
 
-	socket.emit('ads', { 
-		ads: ['vpMeFh37mCE', 'LXO6Vefqxiw', 'rVke_MP_ZcA']
+	socket.on("fid", function (data) {
+		Client.list(function (err, clients) {
+			Client.find({fid: data.fid}, function (er, client) {
+				socket.emit('ads', { 
+					ads: client.ads
+				});
+			});
+		});
 	});
-	
 });
-
-var request = require('request');
-
-var async = require('async');
-
-var util = require('util');
 
 setInterval(function (){
 
-	request.get('http://192.168.10.174:8083/zwaveapi/run/devices[4].SensorMultilevel', function (err, response, body){
+	request.get('', function (err, response, body){
 
 		if(err){
 			console.log(err);

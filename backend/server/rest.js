@@ -1,4 +1,3 @@
-
 var rest = {};
 
 var mongoose = require('mongoose');
@@ -15,7 +14,6 @@ rest.list = function (req, res) {
 	});
 };
 
-
 rest.create = function (req, res) {
 	if(req.body.data !== undefined){
 		Ad.create(JSON.parse(req.body.data), function (err, ad){
@@ -29,7 +27,6 @@ rest.create = function (req, res) {
 	}
 };
 
-
 rest.update = function (req, res) {
 	Ad.update(req.body.id, req.body.data, function (err){
 		res.send({
@@ -37,7 +34,6 @@ rest.update = function (req, res) {
 		});
 	});
 };
-
 
 rest.remove = function (req, res) {
 	Ad.remove(req.body.id, function (err){
