@@ -1,5 +1,5 @@
 {
-    "name": "Smads",
+    "name": "smads",
     "version": "0.0.1",
     "author" : "CampusHacks",
     "maintainers":[
@@ -20,7 +20,8 @@
         "express": "*",
         "mongoose": "*",
         "async": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "xml2json":"*"
     },
 
     "scripts":{
