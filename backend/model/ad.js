@@ -30,7 +30,7 @@ var adSchema = new schema({
 		max: Number
 	},*/
 
-	client_id: ObjectId
+	client_id: Array
 });
 
 adSchema.statics.create = function (data, callback) {
