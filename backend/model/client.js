@@ -11,7 +11,7 @@ var clientSchema = new mongoose.Schema({
 	name: String,
 	fid: String,
 	ip: String,
-	_id: ObjectId,
+	id: ObjectId,
 	ads: Array
 
 });
