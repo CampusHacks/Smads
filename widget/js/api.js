@@ -1,10 +1,13 @@
 var Api = (function(){
-	var api = {};
-	var host = "";
 
-	api.getClients = function(fn){
+	console.log("API loaded");
+
+	var api = {};
+	var host = "http://130.206.83.5";
+
+	api.getClients = function(fn, err_fn){
 		var url =  host + "/clients";
-		Services.get(url, {}, fn);
+		Services.get(url, {}, fn, err_fn);
 	};
 
 	var Ad = {};

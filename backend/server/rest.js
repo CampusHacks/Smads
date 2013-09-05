@@ -48,6 +48,7 @@ rest.remove = function (req, res) {
 
 rest.listClient = function (req, res){
 	Client.list(function (err, clients){
+		console.log("ey"+clients);
 		res.send({err: err, clients: clients});
 	});
 };
