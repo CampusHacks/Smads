@@ -25,7 +25,7 @@ rest.create = function (req, res) {
 			});
 		});
 	} else{
-		res.send('Body data is undefined, here is your request object: '+ JSON.stringify(req));
+		res.send('Body data is undefined, here is your request object: '+ JSON.stringify(req.body));
 	}
 };
 
