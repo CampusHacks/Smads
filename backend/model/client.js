@@ -4,14 +4,34 @@ var async = require('async');
 
 var adSchema = mongoose.model('Ad', require('./ad'));
 
+var ObjectId = mongoose.Schema.ObjectId
+
 var clientSchema = new mongoose.Schema({
 
 	name: String,
 	fid: String,
-	ip: String
+	ip: String,
+	id: ObjectId,
+	ads: Array
 
 
 });
+
+clientSchema.statics.create = function (data, callback){
+
+	var insert = new this();
+
+	async.map(Object.keys(data), function (key, cb){
+
+		insert[key] = data[key];
+
+	}, function (err){
+	
+		insert.save(callback)
+	
+	});
+
+};
 
 clientSchema.statics.list = function (callback){
 
@@ -33,13 +53,19 @@ clientSchema.statics.list = function (callback){
 
 				async.map(ads, function (ad, _cb){
 
-					if(ad.client_id.indexOf(client._id) > -1){
+					if(ad.client_id.indexOf(client._id)+1){
 						_cb(null, ad);
+					} else{
+						_cb(null);
 					}
 
 				}, function (err, ads){
-					
+
+					console.log(ads);
+
 					client.ads = ads;
+
+					console.log(client);
 
 					cb(null, client);
 				});
@@ -57,17 +83,3 @@ clientSchema.statics.list = function (callback){
 };
 
 module.exports = exports = clientSchema;
-
-/*
-[
-
-	client: {
-		name ...
-		ads: [
-			{},
-			{},
-			{}
-		]
-	}
-
-]*/
