@@ -1,0 +1,3 @@
+{
+"commandML":"<paid:command name=\"SET\"><paid:cmdParam name=\"FreeText\"> <swe:Text><swe:value>FIZCOMMAND 255</swe:value></swe:Text></paid:cmdParam></paid:command>"
+}

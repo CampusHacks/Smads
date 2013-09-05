@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <queryContextRequest>
+        <entityIdList>
+                <entityId type="Sensor" isPattern="false">
+                        <id>4IN1:79:ED:AF:0002</id>
+                </entityId>
+        </entityIdList>
+        <attributeList>
+                <attribute>Move</attribute>
+                <attribute>illuminance</attribute>
+                <attribute>temperature</attribute>
+                <attribute>relativeHumidity</attribute>
+        </attributeList>
+</queryContextRequest>
