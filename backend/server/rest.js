@@ -31,20 +31,28 @@ rest.create = function (req, res) {
 
 
 rest.update = function (req, res) {
-	Ad.update(req.body.id, req.body.data, function (err){
-		res.send({
-			err: err
+	if(req.body.data !== undefined && req.body.id !== undefined){
+		Ad.update(req.body.id, req.body.data, function (err){
+			res.send({
+				err: err
+			});
 		});
-	});
+	} else{
+		res.send('Body data and id is undefined, here is your request object: '+ JSON.stringify(req.body));
+	}
 };
 
 
 rest.remove = function (req, res) {
-	Ad.remove(req.body.id, function (err){
-		res.send({
-			err: err
+	if(req.body.data !== undefined && req.body.id !== undefined){
+		Ad.remove(req.body.id, function (err){
+			res.send({
+				err: err
+			});
 		});
-	});
+	} else{
+		res.send('Body id is undefined, here is your request object: '+ JSON.stringify(req.body));
+	}
 };
 
 rest.listClient = function (req, res){
