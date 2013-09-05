@@ -6,7 +6,7 @@
                 </entityId>
         </entityIdList>
         <attributeList>
-		<attribute>Move</attribute>	
+		
                 <attribute>illuminance</attribute>
                 <attribute>temperature</attribute>
                 <attribute>relativeHumidity</attribute>
