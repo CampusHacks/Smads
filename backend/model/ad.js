@@ -63,7 +63,7 @@ adSchema.statics.update = function (id, data, callback){
 
 		}, function (err){
 		
-			ad.save(callback)
+			ad.save(callback);
 		
 		});
 
