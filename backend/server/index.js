@@ -1,13 +1,15 @@
-var express = require('express'),
-	http = require('http')
+var express = require('express');
+var http = require('http');
+var path = require('path');
 
-var app = express()
+var app = express();
 
 //Express config 
 
 app.use(express.logger('dev'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
+app.use(express.static(__dirname + '/../../client'));
 
 //Error handling
 if ('development' == app.get('env')) {
@@ -15,14 +17,13 @@ if ('development' == app.get('env')) {
 }
 
 //Routes
-var rest = require('./rest')
-
-//Test
-app.get('/', function (req, res){res.send('Up')})
+var rest = require('./rest');
 
 app.get('/ad', rest.list);
 app.post('/ad', rest.create);
 app.put('/ad', rest.update);
 app.del('/ad', rest.remove);
 
-exports = module.exports = http.createServer(app)
+app.get('/clients', rest.listClient);
+
+exports = module.exports = http.createServer(app);

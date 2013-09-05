@@ -1,32 +1,16 @@
 
 var mongoose = require('mongoose');
+var schema = mongoose.Schema;
+var ObjectId = schema.ObjectId;
 var async = require('async');
 
-var adSchema = new mongoose.Schema({
+var adSchema = new schema({
 
-	url: String,
+	id: String,
 	
-	temperature: {
-		min: Number,
-		max: Number
-	},
+	conditions: Object,
 
-	time: {
-		start: Date,
-		end: Date
-	},
-
-	humidity: {
-		min: Number,
-		max: Number
-	},
-
-	light: {
-		min: Number,
-		max: Number
-	},
-
-	client_id: String
+	client_ids: Array
 });
 
 adSchema.statics.create = function (data, callback) {
@@ -38,7 +22,7 @@ adSchema.statics.create = function (data, callback) {
 
 	}, function (err){
 	
-		insert.save(callback)
+		insert.save(callback);
 	
 	});
 };

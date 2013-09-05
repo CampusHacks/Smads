@@ -4,11 +4,11 @@
     <Catalog.ResourceDescription>
         <Vendor>Smads</Vendor>
         <Name>Smads</Name>
-        <Version>0.1.13</Version>
-        <DisplayName>Smads for this</DisplayName>
-        <Author>mjimenez</Author>
-        <Mail>mjimenez@fi.upm.es</Mail>
-        <Description>Full widget description to be shown in catalogue</Description>
+        <Version>1.0.18</Version>
+        <DisplayName>Smad ad</DisplayName>
+        <Author>bvaldivielso</Author>
+        <Mail>brlvldvlsmrtnz@gmail.com</Mail>
+        <Description>Smad advertisement</Description>
         <ImageURI>Absolute or relative path to display image. Better at 170x102px</ImageURI>
         <iPhoneImageURI>Path to imate to display on mobile devices</iPhoneImageURI>
         <WikiURI>Path to widget doc</WikiURI>
@@ -16,6 +16,7 @@
 
     <Platform.Preferences>
 	    <Preference name="pref_name" type="text" description="…" />
+        <Preference name="ad_id" type="text" description="Please do not change anything" default="none"/>
     </Platform.Preferences>
 
 

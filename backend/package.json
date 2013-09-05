@@ -15,11 +15,10 @@
     ],
 
     "main": "app.js",
-
+ 
     "dependencies": {
         "express": "*",
         "mongoose": "*",
-        "mixpanel": "*",
         "async": "*",
         "socket.io": "*"
     },

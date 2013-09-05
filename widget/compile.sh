@@ -1,3 +1,3 @@
 #!/bin/bash
 
-zip widget.wgt *
+zip -r  widget.wgt *
