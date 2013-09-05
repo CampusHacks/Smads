@@ -20,7 +20,8 @@
         "express": "*",
         "mongoose": "*",
         "async": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "request": "*"
     },
 
     "scripts":{
