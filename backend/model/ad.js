@@ -1,8 +1,10 @@
 
 var mongoose = require('mongoose');
+var schema = mongoose.Schema
+var ObjectId = schema.ObjectId
 var async = require('async');
 
-var adSchema = new mongoose.Schema({
+var adSchema = new schema({
 
 	url: String,
 	
@@ -28,7 +30,7 @@ var adSchema = new mongoose.Schema({
 		max: Number
 	},*/
 
-	client_id: String
+	client_id: ObjectId
 });
 
 adSchema.statics.create = function (data, callback) {

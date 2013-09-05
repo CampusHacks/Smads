@@ -1,7 +1,8 @@
 var socket = io.connect('http://localhost:3000');
-var ads;
+var ads, ad, start;
 socket.on('ads', function(data) {
-	document.getElementById('loadingTitle').style.display = false;
-	//ads = data.ads;
+	document.getElementById('loadingTitle').style.display = "none";
+	ads = data.ads;
+	ad = 0;
+	start = true;
 });
-ads = ["vpMeFh37mCE", "LXO6Vefqxiw", "rVke_MP_ZcA"];

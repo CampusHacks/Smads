@@ -4,8 +4,9 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var ad = 0;
+
 function onYouTubeIframeAPIReady() {
+	start = false;
 	player = new YT.Player('player', {
 		height: screen.availHeight,
 		width: screen.availWidth,
@@ -17,13 +18,15 @@ function onYouTubeIframeAPIReady() {
 	});
 }
 
-var elem = document.getElementById("player");
-if (elem.requestFullscreen) {
-	elem.requestFullscreen();
-} else if (elem.mozRequestFullScreen) {
-	elem.mozRequestFullScreen();
-} else if (elem.webkitRequestFullscreen) {
-	elem.webkitRequestFullscreen();
+function DoFullScreen() {
+	var elem = document.getElementById("player");
+	if (elem.requestFullscreen) {
+		elem.requestFullscreen();
+	} else if (elem.mozRequestFullScreen) {
+		elem.mozRequestFullScreen();
+	} else if (elem.webkitRequestFullscreen) {
+		elem.webkitRequestFullscreen();
+	}
 }
 
 function onPlayerReady(event) {
@@ -32,8 +35,11 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
 	if (event.data == YT.PlayerState.ENDED) {
-		ad = (ad + 1) % ads.length;
-		console.log(ad);
+		if (start) {
+			start = false;
+		} else {
+			ad = (ad + 1) % ads.length;
+		}
 		player.loadVideoById(ads[ad]);
 	}
 }
