@@ -19,16 +19,6 @@ if ('development' == app.get('env')) {
 //Routes
 var rest = require('./rest');
 
-<<<<<<< HEAD
-//Test
-app.get('/', function (req, res){
-
-	res.sendfile(path.resolve(__dirname + '/../../client/index.html'));
-
-});
-
-=======
->>>>>>> 137829a6f98d107ae0157df6ddf4e6d67b6a6421
 app.get('/ad', rest.list);
 app.post('/ad', rest.create);
 app.put('/ad', rest.update);
