@@ -21,7 +21,8 @@
         "mongoose": "*",
         "async": "*",
         "socket.io": "*",
-        "xml2json":"*"
+        "xml2json":"*",
+        "request": "*"
     },
 
     "scripts":{

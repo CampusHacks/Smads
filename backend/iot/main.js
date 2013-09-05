@@ -30,7 +30,23 @@ setInterval(function (){
 
 			}, function (err, data){
 
-				console.log(data);
+				if(err){
+					console.log(err);
+				} else{
+
+					var gatherData = {};
+
+					async.map(data, function (row, cb){
+
+						gatherData[row.name] = row.value;
+
+					}, function (err){
+
+						
+						
+					});
+
+				}
 
 			});
 

@@ -1,45 +1,64 @@
 
 var mongoose = require('mongoose');
 var async = require('async');
-var adSchemaParent = require('./ad');
-var adSchema = mongoose.model('Ad', adSchemaParent);
+
+var adSchema = mongoose.model('Ad', require('./ad'));
+
+var ObjectId = mongoose.Schema.ObjectId
 
 var clientSchema = new mongoose.Schema({
+	
 	name: String,
 	fid: String,
-	ip: String
+	ip: String,
+	id: ObjectId,
+	ads: Array
 
 });
 
 clientSchema.statics.list = function (callback){
+
 	this.find({}).exec(function(err, clients){
-		var clientList = [];
+		
+		if(err){
+			callback(er);
+			return;
+		}
+
 		adSchema.list(function(er, ads){
 
-			async.map(clients, function (client, cb) {
-				console.log("a"+client);
-				var adlist = [];
-				async.map(ads, function (ad, cb2) {
-					console.log("b"+ad);
-					if (ad.client_ids.indexOf(client._id) > -1) {
-						adlist.push(ad);
+			if(er){
+				callback(er);
+				return;
+			}
+
+			async.map(clients, function (client, cb){
+
+				async.map(ads, function (ad, _cb){
+
+					if(ad && ad.client_id && client._id && ad.client_id.indexOf(client._id)+1){
+						_cb(null, ad);
+					} else{
+						_cb(null);
 					}
 
-					cb2(null, client, adlist);
+				}, function (err, ads){
 
-				}, function (e, client, adlist) {
-					console.log(adlist);
-					client.ads = adlist;
-					clientList.push(client);
-					cb();
+					client.ads = ads;
+
+					cb(null, client);
 				});
-				
 
-			}, function (errr) {
-				callback(clientList);
-			})
+			}, function (err, clients){
+
+				callback(err, clients);
+
+			});
+
 		});
+
 	});
+
 };
 
 module.exports = exports = clientSchema;

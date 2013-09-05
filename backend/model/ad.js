@@ -6,7 +6,7 @@ var async = require('async');
 
 var adSchema = new schema({
 
-	id: String,
+	url: String,
 	
 	conditions: Object,
 
@@ -16,15 +16,11 @@ var adSchema = new schema({
 adSchema.statics.create = function (data, callback) {
 	var insert = new this();
 
-	async.map(Object.keys(data), function (key, cb){
+	insert.url = data.url;
+	insert.conditons = data.conditons;
+	insert.client_ids = data.client_ids;
 
-		insert[key] = data[key];
-
-	}, function (err){
-	
-		insert.save(callback);
-	
-	});
+	insert.save(callback);
 };
 
 adSchema.statics.remove = function (id, callback){
@@ -43,7 +39,7 @@ adSchema.statics.update = function (id, data, callback){
 
 		}, function (err){
 		
-			ad.save(callback)
+			ad.save(callback);
 		
 		});
 
