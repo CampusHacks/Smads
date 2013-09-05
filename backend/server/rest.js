@@ -17,13 +17,16 @@ rest.list = function (req, res) {
 
 
 rest.create = function (req, res) {
-	
-	Ad.create(JSON.parse(req.body.data), function (err, ad){
-		res.send({
-			err: err,
-			ad: ad
+	if(req.body.data !== undefined){
+		Ad.create(JSON.parse(req.body.data), function (err, ad){
+			res.send({
+				err: err,
+				ad: ad
+			});
 		});
-	});
+	} else{
+		res.send('Body data is undefined, here is your request object', req.body);
+	}
 };
 
 
@@ -46,7 +49,6 @@ rest.remove = function (req, res) {
 
 rest.listClient = function (req, res){
 	Client.list(function (err, clients){
-		console.log("ey"+clients);
 		res.send({err: err, clients: clients});
 	});
 };
