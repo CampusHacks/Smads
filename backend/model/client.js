@@ -25,7 +25,9 @@ clientSchema.statics.create = function (data, callback){
 
 	}, function (err){
 	
-		insert.save(callback)
+		insert.save(callback);
+
+	});
 };
 
 clientSchema.statics.list = function (callback){

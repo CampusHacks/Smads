@@ -18,8 +18,6 @@ rest.list = function (req, res) {
 
 rest.create = function (req, res) {
 	
-	console.log(req.body);
-
 	Ad.create(JSON.parse(req.body.data), function (err, ad){
 		res.send({
 			err: err,
