@@ -118,7 +118,7 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	}, 3000);
+	}, 1000);
 
 	socket.on('disconnect', function (){
 		clearInterval(loop);
