@@ -8,10 +8,13 @@ socket.on('connect', function(){
 	socket.on('ads', function(data) {
 		console.log(data);
 		document.getElementById('loadingTitle').style.display = "none";
-		ads = data.ads;
+
+		ads = data;
+
 		ad = 0;
 		start = true;
-			console.log(ads[ad]);
+		console.log(ads[ad]);
+	
 	});
 });
 var ads, ad, start;
