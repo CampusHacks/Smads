@@ -9,13 +9,35 @@ var mongoose = require('mongoose')
 
 var adSchema = mongoose.model('Ad');
 
-var _sent;
+var _sent = [];
+
+Array.prototype.same = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0; i < this.length; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].compare(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+}
 
 io.sockets.on('connection', function (socket) {
 
 	getter.get(function (err, data){
-
-		console.log(data);
 
 		adSchema.find({})
 			
@@ -38,11 +60,15 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
+				if(_sent.same(ads)){
+					return;
+				});
+
+				_sent = ads;
+
 				socket.emit('ads', ads);
 
 			});
-
-			console.log(ads);
 
 		});
 
@@ -51,6 +77,12 @@ io.sockets.on('connection', function (socket) {
 	socket.on('fid', function (data) {
 		Client.list(function (err, clients) {
 			Client.find({fid: data.fid}, function (er, client) {
+
+				if(_sent.same(ads)){
+					return;
+				});
+
+				_sent = ads;
 
 				socket.emit('ads', { 
 					ads: client.ads
@@ -85,6 +117,12 @@ setInterval(function (){
 				cb(null, ad.url);
 
 			}, function (err, ads){
+
+				if(_sent.same(ads)){
+					return;
+				});
+
+				_sent = ads;
 
 				io.sockets.emit('ads', ads);
 
