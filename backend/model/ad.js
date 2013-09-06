@@ -17,7 +17,8 @@ adSchema.statics.create = function (data, callback) {
 	insert.conditons = data.conditons;
 	insert.client_ids = data.client_ids;
 
-	insert.save()
+	insert.save(callback)
+
 };
 
 adSchema.statics.remove = function (id, callback){

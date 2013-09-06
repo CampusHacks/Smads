@@ -11,6 +11,39 @@ var adSchema = mongoose.model('Ad');
 
 io.sockets.on('connection', function (socket) {
 
+	getter.get(function (err, data){
+
+		adSchema.find({})
+			
+			/*.where('temperature.max').lt(data.temperature)
+			.where('temperature.min').gt(data.temperature)
+
+			.where('humidity.max').lt(data.illuminance)
+			.where('humidity.min').gt(data.illuminance)	
+
+			.where('illuminance.max').lt(data.relativeHumidity)
+			.where('humidity.min').gt(data.relativeHumidity)*/	
+
+			.select('url')
+
+		.exec(function (err, ads){
+
+			async.map(ads, function (ad, cb){
+
+				cb(null, ad.url);
+
+			}, function (err, ads){
+
+				socket.emit('ads', ads);
+
+			});
+
+			socket.emit('ads', {ads: ads});
+
+		});
+
+	});
+	
 	socket.on("fid", function (data) {
 		Client.list(function (err, clients) {
 			Client.find({fid: data.fid}, function (er, client) {
@@ -43,7 +76,7 @@ setInterval(function (){
 
 			async.map(ads, function (ad, cb){
 
-				cb(ad.url);
+				cb(null, ad.url);
 
 			}, function (err, ads){
 
@@ -59,4 +92,3 @@ setInterval(function (){
 	});
 
 }, 1000);
-

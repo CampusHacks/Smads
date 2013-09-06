@@ -33,7 +33,7 @@ clientSchema.statics.list = function (callback){
 
 				async.map(ads, function (ad, _cb){
 
-					if(ad && ad.client_id && client._id && ad.client_id.indexOf(client._id)+1){
+					if(ad && ad.client_ids && client._id && ad.client_ids.indexOf(client._id)+1){
 						_cb(null, ad);
 					} else{
 						_cb(null);
