@@ -25,8 +25,22 @@ var Api = (function(){
 			conditions: conditions
 		};
 
+		console.log(JSON.stringify(ad_data));
+
 		Services.post(url, { "data": JSON.stringify(ad_data) }, fn);
 
+	};
+
+	Ad.update = function(ad_id, client_id, video_url, conditions, fn){
+		var url = host + "/ad";
+		var ad_data = {
+			client_ids: client_id,
+			url: video_url,
+			conditions: conditions
+		};
+
+
+		Services.put(url, { "data": JSON.stringify(ad_data), "id": ad_id }, fn);		
 	};
 
 

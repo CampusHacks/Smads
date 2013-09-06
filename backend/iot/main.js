@@ -1,3 +1,9 @@
+var request = require('request');
+var async = require('async');
+var util = require('util');
+var mongoose = require('mongoose');
+
+var Client = mongoose.model('Client');
 var getter = require('./getter');
 var mongoose = require('mongoose')
 
@@ -28,24 +34,24 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
-				io.sockets.emit('ads', ads);
+				socket.emit('ads', ads);
 
 			});
 
-			io.sockets.emit('ads', {ads: ads});
+			socket.emit('ads', {ads: ads});
 
 		});
 	
-
+	socket.on("fid", function (data) {
+		Client.list(function (err, clients) {
+			Client.find({fid: data.fid}, function (er, client) {
+				socket.emit('ads', { 
+					ads: client.ads
+				});
+			});
+		});
 	});
-	
 });
-
-var request = require('request');
-
-var async = require('async');
-
-var util = require('util');
 
 setInterval(function (){
 

@@ -5,11 +5,8 @@ var ObjectId = schema.ObjectId;
 var async = require('async');
 
 var adSchema = new schema({
-
 	url: String,
-	
 	conditions: Object,
-
 	client_ids: Array
 });
 
