@@ -16,7 +16,7 @@ io.sockets.on('connection', function (socket) {
 			.where('humidity.min').gt(data.illuminance)	
 
 			.where('illuminance.max').lt(data.relativeHumidity)
-			.where('humidity.min').gt(data.relativeHumidity)*/
+			.where('humidity.min').gt(data.relativeHumidity)*/	
 
 			.select('url')
 
@@ -24,7 +24,7 @@ io.sockets.on('connection', function (socket) {
 
 			async.map(ads, function (ad, cb){
 
-				cb(ad.url);
+				cb(null, ad.url);
 
 			}, function (err, ads){
 
@@ -68,7 +68,7 @@ setInterval(function (){
 
 			async.map(ads, function (ad, cb){
 
-				cb(ad.url);
+				cb(null, ad.url);
 
 			}, function (err, ads){
 
