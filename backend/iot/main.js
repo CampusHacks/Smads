@@ -37,6 +37,10 @@ Array.prototype.same = function (array) {
 
 io.sockets.on('connection', function (socket) {
 
+	var _sent = [];
+
+	socket.emit('pene', 'jijilachupa');
+
 	getter.get(function (err, data){
 
 		adSchema.find({})
@@ -73,66 +77,53 @@ io.sockets.on('connection', function (socket) {
 		});
 
 	});
-	
-	socket.on('fid', function (data) {
-		Client.list(function (err, clients) {
-			Client.find({fid: data.fid}, function (er, client) {
 
-				if(_sent.same(ads)){
-					return;
-				}
+	var loop = setInterval(function (){
 
-				_sent = ads;
+		getter.get(function (err, data){
 
-				socket.emit('ads', { 
-					ads: client.ads
+			adSchema.find({})
+				
+				.where('conditions.temperature.max').gt(Number(data.temperature))
+				.where('conditions.temperature.min').lt(Number(data.temperature))
+
+				.where('conditions.lux.max').gt(Number(data.illuminance))
+				.where('conditions.lux.min').lt(Number(data.illuminance))	
+
+				.where('conditions.humidity.max').gt(Number(data.relativeHumidity))
+				.where('conditions.humidity.min').lt(Number(data.relativeHumidity))
+
+				.select('url')
+
+			.exec(function (err, ads){
+
+				async.map(ads, function (ad, cb){
+
+					cb(null, ad.url);
+
+				}, function (err, ads){
+
+					if(_sent.same(ads)){
+						return;
+					}
+
+					_sent = ads;	
+
+					socket.emit('ads', ads);
+
+					console.log(data, ads);
+
 				});
 
 			});
+		
+
 		});
+
+	}, 3000);
+
+	socket.on('disconnect', function (){
+		clearInterval(loop);
 	});
+
 });
-
-setInterval(function (){
-
-	getter.get(function (err, data){
-
-		adSchema.find({})
-			
-			.where('conditions.temperature.max').gt(Number(data.temperature))
-			.where('conditions.temperature.min').lt(Number(data.temperature))
-
-			.where('conditions.lux.max').gt(Number(data.illuminance))
-			.where('conditions.lux.min').lt(Number(data.illuminance))	
-
-			.where('conditions.humidity.max').gt(Number(data.relativeHumidity))
-			.where('conditions.humidity.min').lt(Number(data.relativeHumidity))
-
-			.select('url')
-
-		.exec(function (err, ads){
-
-			async.map(ads, function (ad, cb){
-
-				cb(null, ad.url);
-
-			}, function (err, ads){
-
-				if(_sent.same(ads)){
-					return;
-				}
-
-				_sent = ads;	
-
-				io.sockets.emit('ads', ads);
-
-				console.log(data, ads);
-
-			});
-
-		});
-	
-
-	});
-
-}, 3000);
