@@ -62,7 +62,7 @@ io.sockets.on('connection', function (socket) {
 
 				if(_sent.same(ads)){
 					return;
-				});
+				}
 
 				_sent = ads;
 
@@ -80,7 +80,7 @@ io.sockets.on('connection', function (socket) {
 
 				if(_sent.same(ads)){
 					return;
-				});
+				}
 
 				_sent = ads;
 
@@ -120,9 +120,9 @@ setInterval(function (){
 
 				if(_sent.same(ads)){
 					return;
-				});
+				}
 
-				_sent = ads;
+				_sent = ads;	
 
 				io.sockets.emit('ads', ads);
 
@@ -135,4 +135,4 @@ setInterval(function (){
 
 	});
 
-}, 1000);
+}, 3000);
