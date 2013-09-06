@@ -39,8 +39,6 @@ io.sockets.on('connection', function (socket) {
 
 	var _sent = [];
 
-	socket.emit('pene', 'jijilachupa');
-
 	getter.get(function (err, data){
 
 		adSchema.find({})
@@ -107,8 +105,8 @@ io.sockets.on('connection', function (socket) {
 						return;
 					}
 
-					_sent = ads;	
-
+					_sent = ads;
+					
 					socket.emit('ads', ads);
 
 					console.log(data, ads);

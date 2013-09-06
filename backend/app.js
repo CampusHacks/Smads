@@ -5,7 +5,7 @@ process.env.NODE_ENV = ((env == 'prod') ? 'production' : 'development');
 var model = require('./model');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/smads');
+mongoose.connect('mongodb://10.0.0.59:27017/smads');
 mongoose.model('Ad', model.ad);
 mongoose.model('Client', model.client);
 
