@@ -75,8 +75,8 @@ io.sockets.on('connection', function (socket) {
 		});
 
 	});*/
-
-	var loop = setInterval(function (){
+	
+	function sender (){
 
 		getter.get(function (err, data){
 
@@ -118,7 +118,11 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	}, 1000);
+	}
+
+	sender();
+
+	var loop = setInterval(sender, 1000);
 
 	socket.on('disconnect', function (){
 		clearInterval(loop);
