@@ -1,6 +1,8 @@
 var socket = io.connect('http://130.206.83.5');
 var start;
 
+// WON HACKATHON :P
+
 socket.on('connect', function(){
 	function d(){
 		if (working == false){
