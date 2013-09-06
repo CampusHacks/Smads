@@ -37,6 +37,8 @@ Array.prototype.same = function (array) {
 
 io.sockets.on('connection', function (socket) {
 
+	socket.emit('pene', 'jijilachupa');
+
 	getter.get(function (err, data){
 
 		adSchema.find({})
@@ -73,24 +75,7 @@ io.sockets.on('connection', function (socket) {
 		});
 
 	});
-	
-	socket.on('fid', function (data) {
-		Client.list(function (err, clients) {
-			Client.find({fid: data.fid}, function (er, client) {
 
-				if(_sent.same(ads)){
-					return;
-				}
-
-				_sent = ads;
-
-				socket.emit('ads', { 
-					ads: client.ads
-				});
-
-			});
-		});
-	});
 });
 
 setInterval(function (){
