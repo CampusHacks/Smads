@@ -37,6 +37,8 @@ Array.prototype.same = function (array) {
 
 io.sockets.on('connection', function (socket) {
 
+	var _sent = [];
+
 	socket.emit('pene', 'jijilachupa');
 
 	getter.get(function (err, data){
@@ -76,48 +78,48 @@ io.sockets.on('connection', function (socket) {
 
 	});
 
-});
+	setInterval(function (){
 
-setInterval(function (){
+		getter.get(function (err, data){
 
-	getter.get(function (err, data){
+			adSchema.find({})
+				
+				.where('conditions.temperature.max').gt(Number(data.temperature))
+				.where('conditions.temperature.min').lt(Number(data.temperature))
 
-		adSchema.find({})
-			
-			.where('conditions.temperature.max').gt(Number(data.temperature))
-			.where('conditions.temperature.min').lt(Number(data.temperature))
+				.where('conditions.lux.max').gt(Number(data.illuminance))
+				.where('conditions.lux.min').lt(Number(data.illuminance))	
 
-			.where('conditions.lux.max').gt(Number(data.illuminance))
-			.where('conditions.lux.min').lt(Number(data.illuminance))	
+				.where('conditions.humidity.max').gt(Number(data.relativeHumidity))
+				.where('conditions.humidity.min').lt(Number(data.relativeHumidity))
 
-			.where('conditions.humidity.max').gt(Number(data.relativeHumidity))
-			.where('conditions.humidity.min').lt(Number(data.relativeHumidity))
+				.select('url')
 
-			.select('url')
+			.exec(function (err, ads){
 
-		.exec(function (err, ads){
+				async.map(ads, function (ad, cb){
 
-			async.map(ads, function (ad, cb){
+					cb(null, ad.url);
 
-				cb(null, ad.url);
+				}, function (err, ads){
 
-			}, function (err, ads){
+					if(_sent.same(ads)){
+						return;
+					}
 
-				if(_sent.same(ads)){
-					return;
-				}
+					_sent = ads;	
 
-				_sent = ads;	
+					socket.emit('ads', ads);
 
-				io.sockets.emit('ads', ads);
+					console.log(data, ads);
 
-				console.log(data, ads);
+				});
 
 			});
+		
 
 		});
-	
 
-	});
+	}, 3000);
 
-}, 3000);
+});
