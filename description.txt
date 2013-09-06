@@ -5,12 +5,16 @@ Team members:   Alberto Elias - 18 (me@alberto-elias.com)
 		Alejandro Perezpaya - 17 (alejandro@perezpaya.net)
 		Jorge Izquierdo - 16 (jorge@izqui.me)
 
-Mobile phones: +447763503987, +447763503986 (Whatsapp (Just in case) +34628151894)
+Mobile phones: +447763503987, +447763503986
 
 Project description: 
 		With all the buzz around smart cities, people are starting to worry about having advertisement everywhere. We’re imagining cities with screens everywhere, and in which a business model based on ads is predominant.
 		Smart cities have an enormous potential in advertisement, and it’s important that we make use of it. Ads have gotten much more intelligent over the past few years, but in the world of Internet of Things, we can take this to a whole new level. We propose a system in which the ads displayed to a user are chosen based on the information received from different kinds of sensors like a temperature, proximity or humidity sensor.
 		Smads is a product that makes ads appear just in the right moment when they make the most sense. This will allow advertisers to reach the users better and present them the product in the conditions they will need it so they get better impact. 
+
+Use case:
+		Imagine a sun glasses company. Before Smads, we would place ads everywhere and the advert would be shown at every time. But when it is cloudy, nobody cares about sunglasses so ad is useless and maybe in a more sunny time, the ad isn’t shown. 
+		Smads solves this by presenting the right ads at the right time based on weather conditions.
 
 Economical impact:
 		With Smads we think we can get to found a very successful startup because it is clear that advertivers are looking for ways to reach their customers and Smads could be a really good opportunity.
