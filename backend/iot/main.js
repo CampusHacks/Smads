@@ -39,7 +39,7 @@ io.sockets.on('connection', function (socket) {
 
 	var _sent = [];
 
-/*	getter.get(function (err, data){
+	getter.get(function (err, data){
 
 		adSchema.find({})
 			
@@ -74,9 +74,9 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	});*/
-	
-	function sender (){
+	});
+
+	var loop = setInterval(function (){
 
 		getter.get(function (err, data){
 
@@ -118,11 +118,7 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	}
-
-	sender();
-
-	var loop = setInterval(sender, 1000);
+	}, 1000);
 
 	socket.on('disconnect', function (){
 		clearInterval(loop);
