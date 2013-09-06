@@ -14,7 +14,7 @@ adSchema.statics.create = function (data, callback) {
 	var insert = new this();
 
 	insert.url = data.url;
-	insert.conditons = data.conditons;
+	insert.conditions = data.conditions;
 	insert.client_ids = data.client_ids;
 
 	insert.save(callback)
