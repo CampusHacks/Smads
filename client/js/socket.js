@@ -1,4 +1,5 @@
 var socket = io.connect('http://130.206.83.5');
+var start;
 
 socket.on('connect', function(){
  	var tag = document.createElement('script');
@@ -8,13 +9,9 @@ socket.on('connect', function(){
 	socket.on('ads', function(data) {
 		console.log(data);
 		document.getElementById('loadingTitle').style.display = "none";
-
 		ads = data;
-
 		ad = 0;
 		start = true;
 		console.log(ads[ad]);
-	
 	});
 });
-var ads, ad, start;

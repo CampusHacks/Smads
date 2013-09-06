@@ -1,9 +1,8 @@
-var player;
+var ads, ad, player;
 
 function onYouTubeIframeAPIReady() {
 	start = false;
-	console.log("1"+ads);
-	console.log("1.1"+ad);
+	console.log("1.1"+ads[ad]);
 	player = new YT.Player('player', {
 		height: screen.availHeight,
 		width: screen.availWidth,
@@ -13,6 +12,7 @@ function onYouTubeIframeAPIReady() {
 			'onStateChange': onPlayerStateChange
 		}
 	});
+	console.log("Amo a Laura");
 }
 
 function DoFullScreen() {
