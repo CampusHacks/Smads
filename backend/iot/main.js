@@ -67,14 +67,14 @@ setInterval(function (){
 
 		adSchema.find({})
 			
-			.where('temperature.max').lt(data.temperature)
-			.where('temperature.min').gt(data.temperature)
+			.where('temperature.max').lt(Float(data.temperature))
+			.where('temperature.min').gt(Float(data.temperature))
 
-			.where('lux.max').lt(data.illuminance)
-			.where('lux.min').gt(data.illuminance)	
+			.where('lux.max').lt(Float(data.illuminance))
+			.where('lux.min').gt(Float(data.illuminance))	
 
-			.where('humidity.max').lt(data.relativeHumidity)
-			.where('humidity.min').gt(data.relativeHumidity)
+			.where('humidity.max').lt(Float(data.relativeHumidity))
+			.where('humidity.min').gt(Float(data.relativeHumidity))
 
 			.select('url')
 
