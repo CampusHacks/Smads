@@ -4,11 +4,11 @@ socket.emit('fid', {
 	fid: parseUri(location.href).query
 });
 socket.on('ads', function(data) {
-	console.log(data);
 	document.getElementById('loadingTitle').style.display = "none";
 	ads = data.ads;
 	ad = 0;
 	start = true;
+	console.log(ads[ad]);
 });
 
 var tag = document.createElement('script');
@@ -20,6 +20,8 @@ var player;
 
 function onYouTubeIframeAPIReady() {
 	start = false;
+	console.log("1"+ads);
+	console.log("1.1"+ad);
 	player = new YT.Player('player', {
 		height: screen.availHeight,
 		width: screen.availWidth,
