@@ -7,6 +7,7 @@ function onYouTubeIframeAPIReady() {
 		height: screen.availHeight,
 		width: screen.availWidth,
 		videoId: ads[ad],
+		playerVars: {'autoplay':1, 'rel':0, 'showinfo':0, 'egm':0, 'showsearch':0,},
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
