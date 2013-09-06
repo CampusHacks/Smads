@@ -25,6 +25,7 @@ body {
   background-color: #eee;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-bottom: 30px;
 }
 .nav-justified > li > a {
   padding-top: 15px;
@@ -89,4 +90,28 @@ body {
 
 form {
   margin-top: 30px;
+}
+
+.img-author {
+  display: block;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  margin: 10px;
+}
+
+.textleft {
+  text-align: left;
+}
+
+.textright {
+  text-align: right;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
