@@ -79,10 +79,10 @@ setInterval(function (){
 			.where('temperature.max').lt(data.temperature)
 			.where('temperature.min').gt(data.temperature)
 
-			.where('humidity.max').lt(data.illuminance)
-			.where('humidity.min').gt(data.illuminance)	
+			.where('lux.max').lt(data.illuminance)
+			.where('lux.min').gt(data.illuminance)	
 
-			.where('illuminance.max').lt(data.relativeHumidity)
+			.where('humidity.max').lt(data.relativeHumidity)
 			.where('humidity.min').gt(data.relativeHumidity)
 
 			.select('url')
