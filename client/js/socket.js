@@ -7,6 +7,9 @@ socket.on('connect', function(){
 	var firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	socket.on('ads', function(data) {
+
+		console.log(data);
+
 		document.getElementById('loadingTitle').style.display = "none";
 		ads = data;
 		ad = 0;
