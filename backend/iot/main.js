@@ -1,3 +1,9 @@
+var request = require('request');
+var async = require('async');
+var util = require('util');
+var mongoose = require('mongoose');
+
+var Client = mongoose.model('Client');
 var getter = require('./getter');
 var mongoose = require('mongoose')
 
@@ -5,17 +11,16 @@ var adSchema = mongoose.model('Ad');
 
 io.sockets.on('connection', function (socket) {
 
-	socket.emit('ads', { 
-		ads: ['vpMeFh37mCE', 'LXO6Vefqxiw', 'rVke_MP_ZcA']
+	socket.on("fid", function (data) {
+		Client.list(function (err, clients) {
+			Client.find({fid: data.fid}, function (er, client) {
+				socket.emit('ads', { 
+					ads: client.ads
+				});
+			});
+		});
 	});
-	
 });
-
-var request = require('request');
-
-var async = require('async');
-
-var util = require('util');
 
 setInterval(function (){
 
