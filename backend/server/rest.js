@@ -32,7 +32,7 @@ rest.create = function (req, res) {
 
 rest.update = function (req, res) {
 	if(req.body.data !== undefined && req.body.id !== undefined){
-		Ad.update(req.body.id, req.body.data, function (err, data){
+		Ad.update(req.body.id, JSON.parse(req.body.data), function (err, data){
 			res.send({
 				err: err,
 				data: data

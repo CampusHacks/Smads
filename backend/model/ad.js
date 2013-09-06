@@ -32,8 +32,6 @@ adSchema.statics.remove = function (id, callback){
 
 adSchema.statics.update = function (id, data, callback){
 
-	console.log(id, data);
-
 	this.findById(id, function (err, ad){
 
 		async.map(Object.keys(data), function (key, cb){
