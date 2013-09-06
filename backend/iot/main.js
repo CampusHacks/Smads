@@ -9,6 +9,8 @@ var mongoose = require('mongoose')
 
 var adSchema = mongoose.model('Ad');
 
+var _sent;
+
 io.sockets.on('connection', function (socket) {
 
 	getter.get(function (err, data){
@@ -34,6 +36,12 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
+				if(ads == _sent){
+					return;
+				}
+
+				_sent = ads;
+
 				socket.emit('ads', ads);
 
 			});
@@ -44,9 +52,16 @@ io.sockets.on('connection', function (socket) {
 
 	});
 	
-	socket.on("fid", function (data) {
+	socket.on('fid', function (data) {
 		Client.list(function (err, clients) {
 			Client.find({fid: data.fid}, function (er, client) {
+				
+				if(ads == _sent){
+					return;
+				}
+
+				_sent = ads;
+
 				socket.emit('ads', { 
 					ads: client.ads
 				});
@@ -79,12 +94,16 @@ setInterval(function (){
 				cb(null, ad.url);
 
 			}, function (err, ads){
+				
+				if(ads == _sent){
+					return;
+				}
+				
+				_sent = ads;
 
 				io.sockets.emit('ads', ads);
 
 			});
-
-			io.sockets.emit('ads', {ads: ads});
 
 		});
 	
