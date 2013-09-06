@@ -19,7 +19,7 @@ exports.get = function (cb){
 			method:'POST'
 
 		}, function (err, res, body){
-			
+			try {
 			var json = JSON.parse(xml.toJson(body))
 			var shit = json['queryContextResponse']['contextResponseList']['contextElementResponse']['contextElement']['contextAttributeList']['contextAttribute']
 
@@ -32,6 +32,10 @@ exports.get = function (cb){
 			}
 			
 			cb(err, arr)
+			}
+			catch(e){
+				//nada
+			}
 		})
 
 	})
