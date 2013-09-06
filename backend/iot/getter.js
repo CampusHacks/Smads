@@ -7,8 +7,11 @@ var xml = require('xml2json'),
 exports.get = function (cb){
 
 	fs.readFile('./body.xml', function (err, d){
-		
-		requests.post({
+		requests('http://192.168.10.174:8083/ZWaveAPI/Run/devices[5].instances[0].commandClasses[49].Get()', function (err, res, body){
+
+			setTimeout(function (){
+
+				requests.post({
 
 			url: 'http://130.206.80.44:1029/ngsi10/queryContext',
 			headers: {
@@ -33,6 +36,11 @@ exports.get = function (cb){
 			
 			cb(null, arr)
 		})
+			}, 300)
+			
+
+		})
+		
 	})
 	
 }
