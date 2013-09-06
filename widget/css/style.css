@@ -1,7 +1,16 @@
 body {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
+	width: 80%;
+    margin: auto;
+    font-family: "Arial";
     color: #333;
 }
+
+.control {
+	margin-bottom: 20px;
+}
+
+label {
+	font-weight: "bold";
+}
+
 
