@@ -41,6 +41,8 @@ io.sockets.on('connection', function (socket) {
 			socket.emit('ads', {ads: ads});
 
 		});
+
+	});
 	
 	socket.on("fid", function (data) {
 		Client.list(function (err, clients) {
@@ -90,4 +92,3 @@ setInterval(function (){
 	});
 
 }, 1000);
-
