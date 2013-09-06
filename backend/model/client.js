@@ -1,11 +1,8 @@
-
 var mongoose = require('mongoose');
 var async = require('async');
 
 var adSchema = mongoose.model('Ad', require('./ad'));
-
 var ObjectId = mongoose.Schema.ObjectId
-
 var clientSchema = new mongoose.Schema({
 	
 	name: String,
@@ -20,14 +17,14 @@ clientSchema.statics.list = function (callback){
 
 	this.find({}).exec(function(err, clients){
 		
-		if(err){
+		if (err) {
 			callback(er);
 			return;
 		}
 
 		adSchema.list(function(er, ads){
 
-			if(er){
+			if (er) {
 				callback(er);
 				return;
 			}

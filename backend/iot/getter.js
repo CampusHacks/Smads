@@ -4,14 +4,15 @@ var xml = require('xml2json'),
 
 
 
-exports.get = function (cb){
+module.exports.get = function (cb){
 
-	fs.readFile('./body.xml', function (err, d){
+	fs.readFile(__dirname + '/body.xml', function (err, d){
 		requests('http://192.168.10.174:8083/ZWaveAPI/Run/devices[5].instances[0].commandClasses[49].Get()', function (err, res, body){
 
 			setTimeout(function (){
 
 				requests.post({
+		requests.post({
 
 			url: 'http://130.206.80.44:1029/ngsi10/queryContext',
 			headers: {
@@ -27,14 +28,15 @@ exports.get = function (cb){
 			var json = JSON.parse(xml.toJson(body))
 			var shit = json['queryContextResponse']['contextResponseList']['contextElementResponse']['contextElement']['contextAttributeList']['contextAttribute']
 
-			var arr = []
+			var arr = {};
 			for (s in shit){
 
 				var ss = shit[s]
-				arr.push({name:ss['name'], value:ss['contextValue']})
+				
+				arr[ss['name']] = ss['contextValue'];
 			}
 			
-			cb(null, arr)
+			cb(err, arr)
 		})
 			}, 300)
 			
@@ -44,4 +46,3 @@ exports.get = function (cb){
 	})
 	
 }
-this.get(console.log)

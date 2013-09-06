@@ -1,59 +1,62 @@
+var request = require('request');
+var async = require('async');
+var util = require('util');
+var mongoose = require('mongoose');
+
+var Client = mongoose.model('Client');
+var getter = require('./getter');
+var mongoose = require('mongoose')
+
+var adSchema = mongoose.model('Ad');
+
 io.sockets.on('connection', function (socket) {
 
-	socket.emit('ads', { 
-		ads: ['vpMeFh37mCE', 'LXO6Vefqxiw', 'rVke_MP_ZcA']
+	socket.on("fid", function (data) {
+		Client.list(function (err, clients) {
+			Client.find({fid: data.fid}, function (er, client) {
+				socket.emit('ads', { 
+					ads: client.ads
+				});
+			});
+		});
 	});
-	
 });
-
-var request = require('request');
-
-var async = require('async');
-
-var util = require('util');
 
 setInterval(function (){
 
-	request.get('http://192.168.10.174:8083/zwaveapi/run/devices[4].SensorMultilevel', function (err, response, body){
+	getter.get(function (err, data){
 
-		if(err){
-			console.log(err);
-		} else{
-			body = JSON.parse(body);
+		adSchema.find({})
+			
+			.where('temperature.max').lt(data.temperature)
+			.where('temperature.min').gt(data.temperature)
 
-			async.map([1, 3, 5], function (key, callback){
+			.where('humidity.max').lt(data.illuminance)
+			.where('humidity.min').gt(data.illuminance)	
 
-				callback(null, {
-					name: body.data[key].sensorTypeString.value,
-					value: body.data[key].val.value
-				});
+			.where('illuminance.max').lt(data.relativeHumidity)
+			.where('humidity.min').gt(data.relativeHumidity)
 
-			}, function (err, data){
+			.select('url')
 
-				if(err){
-					console.log(err);
-				} else{
+		.exec(function (err, ads){
 
-					var gatherData = {};
+			async.map(ads, function (ad, cb){
 
-					async.map(data, function (row, cb){
+				cb(ad.url);
 
-						gatherData[row.name] = row.value;
+			}, function (err, ads){
 
-					}, function (err){
-
-						
-						
-					});
-
-				}
+				io.sockets.emit('ads', ads);
 
 			});
 
-			//console.log(util.inspect(body.data['2'], { showHidden: true, depth: null }));
-		}
+			io.sockets.emit('ads', {ads: ads});
+
+		});
+	
 
 	});
 
-}, 2000);
+}, 1000);
 

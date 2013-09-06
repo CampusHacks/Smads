@@ -5,11 +5,8 @@ var ObjectId = schema.ObjectId;
 var async = require('async');
 
 var adSchema = new schema({
-
 	url: String,
-	
 	conditions: Object,
-
 	client_ids: Array
 });
 
@@ -20,7 +17,7 @@ adSchema.statics.create = function (data, callback) {
 	insert.conditons = data.conditons;
 	insert.client_ids = data.client_ids;
 
-	insert.save(callback);
+	insert.save()
 };
 
 adSchema.statics.remove = function (id, callback){
@@ -33,11 +30,17 @@ adSchema.statics.update = function (id, data, callback){
 
 	this.findById(id, function (err, ad){
 
-		ad.url = data.url;
-		ad.conditons = data.conditons;
-		ad.client_ids = data.client_ids;
+		async.map(Object.keys(data), function (key, cb){
 
-		ad.save(callback);
+			ad[key] = data[key];
+
+			cb();
+
+		}, function (err){
+		
+			ad.save(callback);
+		
+		});
 
 	});
 
