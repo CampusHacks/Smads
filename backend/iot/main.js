@@ -39,11 +39,11 @@ io.sockets.on('connection', function (socket) {
 
 	var _sent = [];
 
-	getter.get(function (err, data){
+/*	getter.get(function (err, data){
 
 		adSchema.find({})
 			
-			/*.where('temperature.max').lt(data.temperature)
+			.where('temperature.max').lt(data.temperature)
 			.where('temperature.min').gt(data.temperature)
 
 			.where('humidity.max').lt(data.illuminance)
@@ -52,7 +52,7 @@ io.sockets.on('connection', function (socket) {
 			.where('illuminance.max').lt(data.relativeHumidity)
 			.where('humidity.min').gt(data.relativeHumidity)
 
-			.select('url')*/
+			.select('url')
 
 		.exec(function (err, ads){
 
@@ -74,7 +74,7 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	});
+	});*/
 
 	var loop = setInterval(function (){
 
