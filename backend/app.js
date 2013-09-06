@@ -12,6 +12,7 @@ mongoose.model('Client', model.client);
 var server = require('./server');
 
 global.io = require('socket.io').listen(server);
+require("./iot/main");
 
 server.listen(PORT, function (err){
 	console.log('Up and running on port '+PORT);
