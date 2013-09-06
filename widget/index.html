@@ -11,10 +11,14 @@
 
         <script type="text/javascript" src="js/main.js"></script>
 
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="lib/css/pure-min.css">
+
+
 
         <script id="select_with_clients" type="text/html">
             {{#clients}}
-                <input type="checkbox" data-client-id="{{ _id }}" value="{{ name }}">
+                <input type="checkbox" class="screen-id-checkbox" data-client-id="{{ _id }}"> {{ name }}<br>
             {{/clients}}
             </select>
         </script>
@@ -26,24 +30,24 @@
 
             </div>
 
-            <div>
-            <label for="id-txt">  Video id </label><br>
-            <input type="text" id="id-txt"><br>
+            <div class="control">
+                <label for="id-txt">  Video id </label><br>
+                <input type="text" id="video-id-txt"><br>
             </div>
 
-            <div>
-            <label for="temperature"> Temperature </label><br>
-            From <input type="number" id="temperature-min-txt"> to <input type="number" id="temperature-max-txt"><br>
+            <div class="control">
+                <label for="temperature"> Temperature </label><br>
+                From <input type="text" id="temperature-min-txt"> to <input type="number" id="temperature-max-txt"><br>
             </div>
 
-            <div>
-            <label for="lux-range"> Lux </label><br>
-            From <input type="number" id="lux-min-txt"> to <input type="number" id="lux-max-txt"><br>
+            <div class="control">
+                <label for="lux-range"> Lux </label><br>
+                From <input type="text" id="lux-min-txt"> to <input type="number" id="lux-max-txt"><br>
             </div>
 
-            <div>
-            <label for="humidity"> Humidity range </label><br>
-            From <input type="number" id="humidity-min-txt"> to <input type="number" id="humidity-max-txt"><br>
+            <div class="control">
+                <label for="humidity"> Humidity range </label><br>
+                From <input type="text" id="humidity-min-txt"> to <input type="number" id="humidity-max-txt"><br>
             </div>
 
             <button id="save-ad-btn"> Save </button>
