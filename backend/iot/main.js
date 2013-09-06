@@ -26,9 +26,9 @@ io.sockets.on('connection', function (socket) {
 			.where('humidity.min').gt(data.illuminance)	
 
 			.where('illuminance.max').lt(data.relativeHumidity)
-			.where('humidity.min').gt(data.relativeHumidity)*/	
+			.where('humidity.min').gt(data.relativeHumidity)
 
-			.select('url')
+			.select('url')*/
 
 		.exec(function (err, ads){
 
