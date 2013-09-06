@@ -15,6 +15,8 @@ io.sockets.on('connection', function (socket) {
 
 	getter.get(function (err, data){
 
+		console.log(data);
+
 		adSchema.find({})
 			
 			/*.where('temperature.max').lt(data.temperature)
@@ -36,17 +38,11 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
-				if(ads == _sent){
-					return;
-				}
-
-				_sent = ads;
-
 				socket.emit('ads', ads);
 
 			});
 
-			socket.emit('ads', {ads: ads});
+			console.log(ads);
 
 		});
 
@@ -55,16 +51,11 @@ io.sockets.on('connection', function (socket) {
 	socket.on('fid', function (data) {
 		Client.list(function (err, clients) {
 			Client.find({fid: data.fid}, function (er, client) {
-				
-				if(ads == _sent){
-					return;
-				}
-
-				_sent = ads;
 
 				socket.emit('ads', { 
 					ads: client.ads
 				});
+
 			});
 		});
 	});
@@ -94,14 +85,10 @@ setInterval(function (){
 				cb(null, ad.url);
 
 			}, function (err, ads){
-				
-				if(ads == _sent){
-					return;
-				}
-				
-				_sent = ads;
 
 				io.sockets.emit('ads', ads);
+
+				console.log(data, ads);
 
 			});
 
