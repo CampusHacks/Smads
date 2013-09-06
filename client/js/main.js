@@ -27,6 +27,7 @@ function DoFullScreen() {
 }
 
 function onPlayerReady(event) {
+	console.log("molo");
 	event.target.playVideo();
 }
 
