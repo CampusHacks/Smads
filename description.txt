@@ -5,7 +5,7 @@ Team members:   Alberto Elias - 18 (me@alberto-elias.com)
 		Alejandro Perezpaya - 17 (alejandro@perezpaya.net)
 		Jorge Izquierdo - 16 (jorge@izqui.me)
 
-Mobile phones: +447763503987, +447763503986 (Whatsapp (Just in case) +34628151894)
+Mobile phones: +447763503987, +447763503986
 
 Project description: 
 		With all the buzz around smart cities, people are starting to worry about having advertisement everywhere. We’re imagining cities with screens everywhere, and in which a business model based on ads is predominant.
