@@ -2,18 +2,16 @@ var ads, ad, player;
 
 function onYouTubeIframeAPIReady() {
 	start = false;
-	console.log("1.1"+ads[ad]);
 	player = new YT.Player('player', {
 		height: screen.availHeight,
 		width: screen.availWidth,
 		videoId: ads[ad],
-		playerVars: {'autoplay':1, 'rel':0, 'showinfo':0, 'egm':0, 'showsearch':0,},
+		playerVars: {'autoplay':1, 'rel':0, 'shownifo':0, 'egm':0, 'showsearch':0, 'controls':0},
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
 		}
 	});
-	console.log("Amo a Laura");
 }
 
 function DoFullScreen() {
@@ -28,7 +26,6 @@ function DoFullScreen() {
 }
 
 function onPlayerReady(event) {
-	console.log("molo");
 	event.target.playVideo();
 }
 

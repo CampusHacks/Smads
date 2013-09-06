@@ -8,11 +8,9 @@ socket.on('connect', function(){
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	console.log("fucker");
 	socket.on('ads', function(data) {
-		console.log(data);
 		document.getElementById('loadingTitle').style.display = "none";
 		ads = data;
 		ad = 0;
 		start = true;
-		console.log(ads[ad]);
 	});
 });
