@@ -20,7 +20,6 @@ exports.get = function (cb){
 
 		}, function (err, res, body){
 			
-			console.log('res')
 			var json = JSON.parse(xml.toJson(body))
 			var shit = json['queryContextResponse']['contextResponseList']['contextElementResponse']['contextElement']['contextAttributeList']['contextAttribute']
 

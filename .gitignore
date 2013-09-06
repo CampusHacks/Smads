@@ -1,4 +1,5 @@
 backend/node_modules
 *.swp
 *.wgt
+*.log
 .DS_Store

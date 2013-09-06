@@ -5,14 +5,15 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 
         <script src="/socket.io/socket.io.js"></script>
-        <script src="js/parseuri.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/socket.js"></script>
     </head>
     <body>
 		<h1 id="loadingTitle">Loading Ads...</h1>
-		<iframe id="player" frameborder="0" allowfullscreen="1" title="YouTube video player" width="1366" height="744" src="https://www.youtube.com/embed/vpMeFh37mCE?enablejsapi=1&rel=0&controls=0&showinfo=0&origin=http://localhost:8000"></iframe>
+		<div id="player"></div>
 		<button id="fullscreen" onClick="DoFullScreen()">Full Screen Mode</button>
 
-		<script src="js/ads.js"></script>
+		
+        <script src="js/parseuri.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
