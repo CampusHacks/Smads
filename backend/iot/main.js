@@ -62,7 +62,7 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
-				if(_sent.same(ads)){
+				if(_sent.same(ads) || ads.same([])){
 					return;
 				}
 
@@ -101,12 +101,12 @@ io.sockets.on('connection', function (socket) {
 
 				}, function (err, ads){
 
-					if(_sent.same(ads)){
+					if(_sent.same(ads) || ads.same([])){
 						return;
 					}
 
 					_sent = ads;
-					
+
 					socket.emit('ads', ads);
 
 					console.log(data, ads);
