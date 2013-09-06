@@ -76,7 +76,7 @@ setInterval(function (){
 			.where('conditions.humidity.max').gt(Number(data.relativeHumidity))
 			.where('conditions.humidity.min').lt(Number(data.relativeHumidity))
 
-			.select('url')*/
+			.select('url')
 
 		.exec(function (err, ads){
 
