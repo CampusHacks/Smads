@@ -3,11 +3,10 @@ var xml = require('xml2json'),
 	requests = require('request')
 
 
-
-module.exports.get = function (cb){
+exports.get = function (cb){
 
 	fs.readFile(__dirname + '/body.xml', function (err, d){
-
+		
 		requests.post({
 
 			url: 'http://130.206.80.44:1029/ngsi10/queryContext',
@@ -21,6 +20,7 @@ module.exports.get = function (cb){
 
 		}, function (err, res, body){
 			
+			console.log('res')
 			var json = JSON.parse(xml.toJson(body))
 			var shit = json['queryContextResponse']['contextResponseList']['contextElementResponse']['contextElement']['contextAttributeList']['contextAttribute']
 
@@ -34,6 +34,9 @@ module.exports.get = function (cb){
 			
 			cb(err, arr)
 		})
+
 	})
 	
+					
 }
+
