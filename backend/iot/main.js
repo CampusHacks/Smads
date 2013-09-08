@@ -43,7 +43,7 @@ io.sockets.on('connection', function (socket) {
 
 		adSchema.find({})
 			
-			/*.where('temperature.max').lt(data.temperature)
+			.where('temperature.max').lt(data.temperature)
 			.where('temperature.min').gt(data.temperature)
 
 			.where('humidity.max').lt(data.illuminance)
@@ -52,7 +52,7 @@ io.sockets.on('connection', function (socket) {
 			.where('illuminance.max').lt(data.relativeHumidity)
 			.where('humidity.min').gt(data.relativeHumidity)
 
-			.select('url')*/
+			.select('url')
 
 		.exec(function (err, ads){
 
@@ -62,7 +62,7 @@ io.sockets.on('connection', function (socket) {
 
 			}, function (err, ads){
 
-				if(_sent.same(ads)){
+				if(_sent.same(ads) || ads.same([])){
 					return;
 				}
 
@@ -101,12 +101,12 @@ io.sockets.on('connection', function (socket) {
 
 				}, function (err, ads){
 
-					if(_sent.same(ads)){
+					if(_sent.same(ads) || ads.same([])){
 						return;
 					}
 
 					_sent = ads;
-					
+
 					socket.emit('ads', ads);
 
 					console.log(data, ads);
@@ -118,7 +118,7 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	}, 3000);
+	}, 1000);
 
 	socket.on('disconnect', function (){
 		clearInterval(loop);
