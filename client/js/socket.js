@@ -1,4 +1,4 @@
-var socket = io.connect('http://130.206.83.5');
+var socket = io.connect('/');
 var start;
 
 // WON HACKATHON :P

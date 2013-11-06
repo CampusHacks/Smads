@@ -39,44 +39,18 @@ io.sockets.on('connection', function (socket) {
 
 	var _sent = [];
 
-	getter.get(function (err, data){
+	bitch();
 
-		adSchema.find({})
-			
-			.where('temperature.max').lt(data.temperature)
-			.where('temperature.min').gt(data.temperature)
-
-			.where('humidity.max').lt(data.illuminance)
-			.where('humidity.min').gt(data.illuminance)	
-
-			.where('illuminance.max').lt(data.relativeHumidity)
-			.where('humidity.min').gt(data.relativeHumidity)
-
-			.select('url')
-
-		.exec(function (err, ads){
-
-			async.map(ads, function (ad, cb){
-
-				cb(null, ad.url);
-
-			}, function (err, ads){
-
-				if(_sent.same(ads) || ads.same([])){
-					return;
-				}
-
-				_sent = ads;
-
-				socket.emit('ads', ads);
-
-			});
-
-		});
-
+	var loop = setInterval(bitch, 1000*60);
+	socket.on('force', bitch);
+	socket.on('disconnect', function (){
+		clearInterval(loop);
 	});
 
-	var loop = setInterval(function (){
+});
+
+
+var bitch = function (){
 
 		getter.get(function (err, data){
 
@@ -103,12 +77,12 @@ io.sockets.on('connection', function (socket) {
 
 					if(_sent.same(ads) || ads.same([])){
 						return;
-					}
+					};
 
 					_sent = ads;
 
-					socket.emit('ads', ads);
-
+					io.sockets.emit('ads', ads);
+					
 					console.log(data, ads);
 
 				});
@@ -118,10 +92,4 @@ io.sockets.on('connection', function (socket) {
 
 		});
 
-	}, 1000);
-
-	socket.on('disconnect', function (){
-		clearInterval(loop);
-	});
-
-});
+	}
